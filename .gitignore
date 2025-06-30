@@ -1,0 +1,19 @@
+# Ignore Python cache and bytecode files
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environment
+djangoenv/
+
+# Ignore VS Code settings (optional)
+.vscode/
+
+# Ignore local settings or secrets if you have any
+*.env
+.env
+
+# Ignore test database
+db.sqlite3
+
+# Ignore logs
+*.log
