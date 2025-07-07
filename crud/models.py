@@ -28,7 +28,7 @@ class User(models.Model):
 class Instructor(User):
     # Fields
     full_time = models.BooleanField(default=True)
-    total_learners = models.IntegerField()
+    total_learners = models.IntegerField(default=0)
     # Methods
     def __str__(self):
         return (
