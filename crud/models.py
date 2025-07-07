@@ -1,8 +1,15 @@
 from django.db import models
 from django.utils.timezone import now
 
+# Utility classes
 
-# Define your models from here:
+class Occupation(models.TextChoices):
+    STUDENT = 'student', 'Student'
+    DEVELOPER = 'developer', 'Developer'
+    DATA_SCIENTIST = 'data_scientist', 'Data Scientist'
+    DBA = 'dba', 'Database Admin'
+
+# Model classes
 
 class User(models.Model):
     # Fields
@@ -63,12 +70,3 @@ class Lesson(models.Model):
     title = models.CharField(max_length=200, default='title')
     course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
     content = models.TextField()
-
-
-# Additional class definitions
-
-class Occupation(models.TextChoices):
-    STUDENT = 'student', 'Student'
-    DEVELOPER = 'developer', 'Developer'
-    DATA_SCIENTIST = 'data_scientist', 'Data Scientist'
-    DBA = 'dba', 'Database Admin'
