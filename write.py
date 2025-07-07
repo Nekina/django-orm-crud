@@ -50,3 +50,19 @@ def write_lessons():
     lession2 = Lesson(title='Lesson 2', content="Django full stack project")
     lession2.save()
     print("Lesson objects all saved... ")
+
+def clean_data():
+    # Delete all data
+    Enrollment.objects.all().delete()
+    User.objects.all().delete()
+    Learner.objects.all().delete()
+    Instructor.objects.all().delete()
+    Course.objects.all().delete()
+    Lesson.objects.all().delete()
+
+# Clean any existing data first
+clean_data()
+# Write some sample data
+write_courses()
+write_instructors()
+write_lessons()
