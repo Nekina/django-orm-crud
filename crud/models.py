@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 
+
 # Define your models from here:
 
 class User(models.Model):
@@ -27,22 +28,12 @@ class Instructor(User):
         )
 
 class Learner(User):
-    STUDENT = 'student'
-    DEVELOPER = 'developer'
-    DATA_SCIENTIST = 'data_scientist'
-    DATABASE_ADMIN = 'dba'
-    OCCUPATION_CHOICES = [
-        (STUDENT, 'Student'),
-        (DEVELOPER, 'Developer'),
-        (DATA_SCIENTIST, 'Data Scientist'),
-        (DATABASE_ADMIN, 'Database Admin')
-    ]
     # Fields
     occupation = models.CharField(
         null=False,
         max_length=20,
-        choices=OCCUPATION_CHOICES,
-        default=STUDENT
+        choices=Occupation.choices,
+        default=Occupation.STUDENT
     )
     social_link = models.URLField(max_length=200)
     # Methods
@@ -72,3 +63,12 @@ class Lesson(models.Model):
     title = models.CharField(max_length=200, default='title')
     course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
     content = models.TextField()
+
+
+# Additional class definitions
+
+class Occupation(models.TextChoices):
+    STUDENT = 'student', 'Student'
+    DEVELOPER = 'developer', 'Developer'
+    DATA_SCIENTIST = 'data_scientist', 'Data Scientist'
+    DBA = 'dba', 'Database Admin'
