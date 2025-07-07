@@ -9,6 +9,10 @@ class Occupation(models.TextChoices):
     DATA_SCIENTIST = 'data_scientist', 'Data Scientist'
     DBA = 'dba', 'Database Admin'
 
+class CourseMode(models.TextChoices):
+    AUDIT = 'audit', 'Audit'
+    HONOR = 'honor', 'Honor'
+
 # Model classes
 
 class User(models.Model):
@@ -70,3 +74,14 @@ class Lesson(models.Model):
     title = models.CharField(max_length=200, default='title')
     course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
     content = models.TextField()
+
+# Enrollment model as a lookup table with additional enrollment info
+class Enrollment(models.Model):
+    # Add a learner foreign key
+    learner = models.ForeignKey(Learner, on_delete=models.CASCADE)
+    # Add a course foreign key
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    # Enrollment date
+    date_enrolled = models.DateField(default=now)
+    # Enrollment mode
+    mode = models.CharField(max_length=5, choices=CourseMode.choices, default=CourseMode.AUDIT)
